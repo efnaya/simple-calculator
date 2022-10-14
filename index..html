@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./calculator.css">
+</head>
+<body>
+    <center>
+        <div class="body">
+            <div class="header">
+                <div class="hhh">Calulator</div>
+                <div class="header1">
+                   <i class="fas hi nj fa-minus"></i>
+                   <i class="far hi nj fa-square"></i>
+                   <i class="fas hi nj fa-times"></i>
+                </div>
+            </div>
+            <div class="screen">
+                <div class="screentop">
+                    <div class="screentopleft">
+                        <i class="fas fa-bars"></i>
+                        <div>Standard</div>
+                    </div>
+                    <div class="fa-solid fa-clock-rotate-left"></div>
+                </div>
+                <input  type="text" name="" id="inpt1" readonly >
+                <input type="text" class="input2" placeholder="0" readonly id="inpt2" >
+                <div class="screenword">
+                    <button>MC</button>
+                    <button>MR</buttton>
+                    <button>M+</button>
+                    <button>M-</button>
+                    <button>MS</button>
+                    <button>M</button>
+                </div>
+            </div>
+
+            <div class="keyboard">
+                <button class="butt" onclick="clic('%')">%</button>
+                <button class="butt" onclick="cu()">CE</button>
+                <button class="butt" id="clear" onclick="cut()" >C</button>
+                <button class="fa-solid fa-delete-left" onclick="del()" ></button>
+                <button class="butt" onclick="cl('1/')">1/x</button>
+                <button class="butt" onclick="cl('sqr')">x²</button>
+                <button class="butt" onclick="cl('√')">&#8730</button>
+                <button class="butt" onclick="clic('/')">÷</button>
+                <button id="wsiu" onclick="cli(7)">7</button>
+                <button id="wsiu" onclick="cli(8)">8</button>
+                <button id="wsiu" onclick="cli(9)">9</button>
+                <button class="butt" id="wsiu" onclick="clic('*')">X</button>
+                <button id="wsiu" onclick="cli(4)">4</button>
+                <button id="wsiu" onclick="cli(5)">5</button>
+                <button id="wsiu" onclick="cli(6)">6</button>
+                <button class="butt" id="wsiu" onclick="clic('-')">-</button>
+                <button id="wsiu" onclick="cli(1)" >1</button>
+                <button id="wsiu"  onclick="cli(2)">2</button>
+                <button id="wsiu"  onclick="cli(3)">3</button>
+                <button class="butt" id="wsiu" onclick="clic('+')" >+</button>
+                <button id="wsiu" onclick="c()">∓</button>
+                <button id="wsiu"  onclick="cli(0)">0</button>
+                <button id="wsiu" onclick="cli('.')" >.</button>
+                <button id="wsiu"  onclick="equ()"   style="background-color: darkgray; border:0.1px;">=</button>
+            </div>
+        </div>
+    </center> 
+</body>
+<script>
+     let screen = document.getElementById('inpt2')
+     let bot = document.getElementById('wsiu')
+     let scree = document.getElementById('inpt1')
+     let firstv
+     let secondv
+     let operator
+    
+
+    function cli(number) {
+        bot.value = number
+        screen.value += bot.value
+        secondv=screen.value
+    }
+
+
+
+    function clic(number) {
+        if (operator) {
+            equ()
+        }
+        scree.value+=screen.value 
+        scree.value+=number
+        screen.placeholder=screen.value
+        firstv=screen.value
+        screen.value=''
+        operator=number 
+     
+    }
+
+
+    function cl(number) {
+        firstv=screen.value
+        operator=number
+         if (operator) {
+            equ()
+        }
+
+        scree.value+= number + firstv
+    }
+    
+   
+    function equ() {
+      if (operator=='+') {
+        screen.value= Number(firstv) + Number(secondv)
+      }
+      else if (operator=='-') {
+        screen.value= Number(firstv) - Number(secondv)
+      }
+      else if (operator=='/') {
+        screen.value= Number(firstv) / Number(secondv)
+      }
+      else if (operator=='*') {
+        screen.value=Number(firstv) * Number(secondv)
+      }
+      else if (operator=="sqr") {
+        screen.value= Number(firstv) ** 2
+      }
+      else if (operator=='%') {
+        screen.value =Number(firstv)/100
+      }
+      else if (operator=='√') {
+        screen.value = Number(firstv)** 0.5
+      }
+      else if (operator== '1/'){
+        screen.value= 1/Number(firstv)
+      }
+      scree.value=''
+     
+      
+    }
+
+    function c() {
+      screen.value= -1 * Number(screen.value)
+    }
+
+
+    function cut() {
+        scree.value=''
+        console.log(scree.value);
+    }
+    function cu() {
+        screen.value=''
+        screen.placeholder=0
+        operator=''
+      
+
+    }
+
+
+    function del() {
+       let de = screen.value
+       screen.value = de.slice(0,-1)
+    }
+   
+</script>
+
+</html>
